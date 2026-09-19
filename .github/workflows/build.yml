@@ -1,7 +1,8 @@
-name: Build Black Hat Mod Menu
+name: Build
 
 on:
   push:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -12,9 +13,11 @@ jobs:
         config:
           - name: Windows
             os: windows-latest
+
           - name: Android32
             os: ubuntu-latest
             target: Android32
+
           - name: Android64
             os: ubuntu-latest
             target: Android64
@@ -25,23 +28,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build
+      - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          target: ${{ matrix.config.target }}
           combine: true
+          target: ${{ matrix.config.target }}
           sdk: 3.0.0
 
   package:
-    needs: build
+    name: Package builds
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: build-*
-          merge-multiple: true
-          path: ./artifacts
+    needs: ['build']
 
+    steps:
       - uses: geode-sdk/build-geode-mod/combine@main
         id: build
 
