@@ -1,0 +1,17 @@
+{
+    "geode": "3.0.0",
+    "id": "waledsobbyt.blackhat",
+    "version": "v1.0.0",
+    "name": "Black Hat Mod Menu",
+    "developer": "WaledSobhYT",
+    "description": "Black Hat Mod Menu - Floating draggable button with cheats",
+    "repository": "https://github.com/waledsobhyt4-ui/black-hat-mod-menu",
+    "settings": {
+        "menu-enabled": {
+            "name": "Mod Menu aktiviert",
+            "type": "bool",
+            "default": true
+        }
+    },
+    "platforms": ["win", "android"]
+}
